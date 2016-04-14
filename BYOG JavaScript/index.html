@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device_width">
+	<title>THIS IS A PLACEHOLDER UNTIL WE FIGURE OUT A TITLE</title>
+    <script src="libs/phaser.js"></script>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			background-color: #000000;
+		}
+	</style>
+</head>
+<body>
+    <div id="gameContainer"></div>
+    <script type="text/javascript">
+         window.onload = function() {
+            var game = new Phaser.Game(686, 960,Phaser.AUTO,'gameContainer');
+            game.state.add('Boot', topDownCarGame.Boot);
+            game.state.start('Boot');
+        }
+    </script>
+</body>
+</html>

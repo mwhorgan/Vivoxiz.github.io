@@ -1,0 +1,13 @@
+top-down car game
+  neverending or get to end without hitting anything
+    other cars
+    roadblocks
+    cones
+  2 or 3 lanes
+  collision - 3 lives
+  tutorial - tells how to use arrow keys 
+  modes - choose between 1p or 2p and endless or not endless mode
+  split screen for 2p
+  name - Catmobile
+  center part of grass - trees
+   
