@@ -1,5 +1,6 @@
 invertedRacer.Preloader = function (game) {
     this.ready = false;
+    van = false;
 };
 
 invertedRacer.Preloader.prototype = {
@@ -18,6 +19,7 @@ invertedRacer.Preloader.prototype = {
         this.load.image('road', 'assets/4lane.png');
         this.load.image('road2', 'assets/4lane5.png');
         this.load.image('candyVan', 'assets/Candy_van.png');
+        this.load.image('candyVan2', 'assets/Candy_van2.png');
         this.load.image('catCar', 'assets/CatCar.png');
         this.load.image('police', 'assets/Police.png');
         this.load.image('taxi', 'assets/taxi.png');

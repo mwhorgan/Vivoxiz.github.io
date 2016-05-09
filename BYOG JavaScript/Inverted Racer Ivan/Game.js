@@ -62,6 +62,16 @@ invertedRacer.Game.prototype = {
         this.p1.anchor.setTo(0.5, 0.5);
         this.p1.spinning = false;
         
+        this.vanCheck();
+        
+    },
+    
+    vanCheck: function () {        
+        if (van === true) {
+            this.p1.loadTexture('candyVan2', 0);
+        } else {
+            this.p1.loadTexture('car1', 0);
+        }
     },
     
     buildRoad: function () {

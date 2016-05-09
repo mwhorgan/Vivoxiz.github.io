@@ -6,6 +6,7 @@ invertedRacer.Boot.prototype = {
     preload: function() {
         this.load.image('titlescreen', 'assets/titlescreen.png');
         this.load.image('startGameText', 'assets/startGameText.png');
+        this.load.image('candyVan', 'assets/Candy_van.png');
     },
     
     create: function() {
