@@ -26,5 +26,5 @@ This game will require a number of road images to create the illusion of a movin
 [opengameart.org/content/free-top-down-car-sprites-by-unlucky-studio](opengameart.org/content/free-top-down-car-sprites-by-unlucky-studio "Top Down Car Sprites")
 
 ###### Vivoxiz.github.io
-[Click here](http://Vivoxiz.github.io/BYOG JavaScript) to see our game in action!
+[Click here](http://Vivoxiz.github.io/Inverted Racer) to see our game in action!
 
