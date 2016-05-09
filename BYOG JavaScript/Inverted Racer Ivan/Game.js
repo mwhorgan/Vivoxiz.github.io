@@ -48,12 +48,7 @@ invertedRacer.Game.prototype = {
         this.buildRoad();
 //        this.buildPlayer();
         this.buildEnemies();
-        
-        this.testText = this.add.bitmapText(this.world.centerX - 200, 50, 'VCR_OSD', 'SCORE: 0', 64);
-        this.testText.tint = 0xFD9B0F;
-        this.life = this.add.bitmapText(this.world.centerX - 80, 20, 'VCR_OSD', 'Lives: 3', 32);
-        this.life.tint = 0xFD9B0F;
-        
+                
         this.p1 = this.add.sprite(160, (this.world.height - 80), 'car1');
         this.physics.arcade.enable(this.p1);
         this.p1.body.collideWorldBounds = true;
@@ -62,6 +57,11 @@ invertedRacer.Game.prototype = {
         this.p1.anchor.setTo(0.5, 0.5);
         this.p1.spinning = false;
         
+        this.testText = this.add.bitmapText(this.world.centerX - 200, 50, 'VCR_OSD', 'SCORE: 0', 64);
+        this.testText.tint = 0xFD9B0F;
+        this.life = this.add.bitmapText(this.world.centerX - 80, 20, 'VCR_OSD', 'Lives: 3', 32);
+        this.life.tint = 0xFD9B0F;
+
         this.vanCheck();
         
     },

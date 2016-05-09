@@ -25,22 +25,6 @@ invertedRacer.Preloader.prototype = {
         this.load.image('taxi', 'assets/taxi.png');
 
         this.load.image('boom1', 'assets/explosion1.fw.png');
-        this.load.image('boom2', 'assets/explosion2.fw.png');
-        this.load.image('boom3', 'assets/explosion3.fw.png');
-        this.load.image('boom4', 'assets/explosion4.fw.png');
-        this.load.image('boom5', 'assets/explosion5.fw.png');
-        this.load.image('boom6', 'assets/explosion6.fw.png');
-        this.load.image('boom7', 'assets/explosion7.fw.png');
-        this.load.image('boom8', 'assets/explosion8.fw.png');
-        this.load.image('boom9', 'assets/explosion9.fw.png');
-        this.load.image('boom10', 'assets/explosion10.fw.png');
-        this.load.image('boom11', 'assets/explosion11.fw.png');
-        this.load.image('boom12', 'assets/explosion12.fw.png');
-        this.load.image('boom13', 'assets/explosion13.fw.png');
-        this.load.image('boom14', 'assets/explosion14.fw.png');
-        this.load.image('boom15', 'assets/explosion15.fw.png');
-        this.load.image('boom16', 'assets/explosion16.fw.png');
-        this.load.image('boom17', 'assets/explosion17.fw.png');
     },
     
     create:function () {},
