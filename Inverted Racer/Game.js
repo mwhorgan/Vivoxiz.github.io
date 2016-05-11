@@ -16,6 +16,7 @@ invertedRacer.Game = function (game) {
     this.rightKey1;
     this.gravKey1;
     this.enemies;
+    this.cone;
     this.moveCoeff;
     // IDEA ! ! !  When collide with police, lose all lives.
     this.test;
@@ -62,11 +63,11 @@ invertedRacer.Game.prototype = {
         this.life = this.add.bitmapText(this.world.centerX - 80, 20, 'VCR_OSD', 'Lives: 3', 32);
         this.life.tint = 0xFD9B0F;
 
-        this.vanCheck();
+        this.p1Texture();
         
     },
     
-    vanCheck: function () {        
+    p1Texture: function () {        
         if (van === true) {
             this.p1.loadTexture('candyVan2', 0);
         } else {
@@ -78,11 +79,11 @@ invertedRacer.Game.prototype = {
         
         this.road = this.add.sprite(0, 0, 'road');
         this.physics.arcade.enable(this.road);
-        this.road.body.velocity.y = 3000;
+        this.road.body.velocity.y = 2500;
 
         this.road2 = this.add.sprite(0, -960, 'road2');
         this.physics.arcade.enable(this.road2);
-        this.road2.body.velocity.y = 3000;
+        this.road2.body.velocity.y = 2500;
 
     },
     
@@ -118,6 +119,32 @@ invertedRacer.Game.prototype = {
                 this.enemies.getAt(i).body.x = this.enemies.getAt(i).body.x - this.enemies.getAt(i).body.halfWidth;
             }
             this.physics.arcade.enable(this.enemy);
+        }
+                
+        this.cones = this.add.group();
+        this.physics.arcade.enable(this.cones);
+        this.cones.enableBody = true;
+        
+        for (var i = 0; i < 1; i++){
+            this.laneCone = this.rnd.integerInRange(0, 2);
+            this.Tcone = this.cones.create((this.laneCone * 122) + 210,  0 - this.rnd.integerInRange(0, 686), 'cone');
+            this.Tcone.crashing = false;
+            this.randomC = this.rnd.integerInRange(1, 3);
+            this.random2C = this.rnd.integerInRange(100, 400);
+            this.Tcone.AI = this.randomC;
+            this.Tcone.whenDo = this.random2C;
+            this.valueC = this.rnd.integerInRange(1, 3);
+            if (this.valueC == 1){
+                this.cones.getAt(i).body.velocity.y = 280;
+                this.cones.getAt(i).body.x = this.cones.getAt(i).body.x - this.cones.getAt(i).body.halfWidth;
+            } else if (this.valueC == 2){
+                this.cones.getAt(i).body.velocity.y = 280;
+                this.cones.getAt(i).body.x = this.cones.getAt(i).body.x - this.cones.getAt(i).body.halfWidth;
+            } else if (this.valueC == 3){
+                this.cones.getAt(i).body.velocity.y = 280;
+                this.cones.getAt(i).body.x = this.cones.getAt(i).body.x - this.cones.getAt(i).body.halfWidth;
+            }
+            this.physics.arcade.enable(this.Tcone);
         }
     },
 
@@ -244,6 +271,28 @@ invertedRacer.Game.prototype = {
             }
         }
     },
+    
+    respawnCone: function () {
+                
+        for (var i = 0; i < this.cones.children.length; i++){
+            if(this.gameover === false && this.cones.getAt(i).body.y > 960 || this.cones.getAt(i).body.x > 686 || this.cones.getAt(i).body.x < 0) {
+                this.laneCone = this.rnd.integerInRange(0, 2);
+                this.cones.getAt(i).reset((this.laneCone * 122) + 225,  0 - this.rnd.integerInRange(0, 686));
+                this.cones.getAt(i).crashing = false;
+                this.valueC = this.rnd.integerInRange(1, 3);
+                if (this.valueC == 1){
+                    this.cones.getAt(i).body.velocity.y = 280;
+                    this.cones.getAt(i).body.x = this.cones.getAt(i).body.x - this.cones.getAt(i).body.halfWidth;
+                } else if (this.valueC == 2){
+                    this.cones.getAt(i).body.velocity.y = 280;
+                    this.cones.getAt(i).body.x = this.cones.getAt(i).body.x - this.cones.getAt(i).body.halfWidth;
+                } else if (this.valueC == 3){
+                    this.cones.getAt(i).body.velocity.y = 280;
+                    this.cones.getAt(i).body.x = this.cones.getAt(i).body.x - this.cones.getAt(i).body.halfWidth;
+                }
+            }
+        }
+    },
         
     checkLivesLeft: function () {    
         if (this.lives <= 0) {
@@ -251,6 +300,7 @@ invertedRacer.Game.prototype = {
             this.p1.body.velocity.y = 0;
             this.p1.destroy();
             this.enemies.destroy();
+            this.cones.destroy();
             this.gameover = true;
             
             var delay = 500;
@@ -292,9 +342,11 @@ invertedRacer.Game.prototype = {
     
     update: function() {
         this.physics.arcade.overlap(this.p1, this.enemies, this.carCollide, null, this);
+        this.physics.arcade.overlap(this.p1, this.cones, this.carCollide, null, this);
         this.playerBorders();
         this.playerMovement();
         this.respawnEnemy();
+        this.respawnCone();
         this.roadMovement();
         
 

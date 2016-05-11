@@ -23,6 +23,7 @@ invertedRacer.Preloader.prototype = {
         this.load.image('catCar', 'assets/CatCar.png');
         this.load.image('police', 'assets/Police.png');
         this.load.image('taxi', 'assets/taxi.png');
+        this.load.image('cone', 'assets/traffic cone.png');
 
         this.load.image('boom1', 'assets/explosion1.fw.png');
     },

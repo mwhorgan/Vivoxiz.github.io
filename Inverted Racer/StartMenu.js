@@ -10,7 +10,7 @@ invertedRacer.StartMenu.prototype = {
 	create: function() {
         this.startBG = this.add.image(0, 0, 'titlescreen');
         
-        this.vanEasterEgg = this.add.image(285, 250, 'candyVan');
+        this.vanEasterEgg = this.add.image(375, 290, 'candyVan');
         this.vanEasterEgg.inputEnabled = true;
         this.vanEasterEgg.events.onInputDown.addOnce(this.playerVan, this);
 
