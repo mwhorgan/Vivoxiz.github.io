@@ -29,6 +29,8 @@ invertedRacer.StartMenu.prototype = {
         this.state.start('Game');
         this.startBG.destroy();
         this.startText.destroy();
+        this.vanEasterEgg.destroy();
+        this.instruct.destroy();
     },
     
     playerVan: function (pointer) {
