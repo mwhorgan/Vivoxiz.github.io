@@ -170,6 +170,8 @@ invertedRacer.Game.prototype = {
         } else if (this.gameover === true) {
             this.road.body.y = 0;
             this.road.body.velocity.y = 0;
+            this.road2.body.y - 0;
+            this.road2.body.velocity.y = 0;
         }
     
     },
