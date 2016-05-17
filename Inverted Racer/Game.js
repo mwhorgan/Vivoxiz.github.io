@@ -85,7 +85,7 @@ invertedRacer.Game.prototype = {
         this.road.body.velocity.y = 2500;
 
         this.road2 = this.add.sprite(0, -960, 'road2');
-        this.road.basevelocity = 2500;
+        this.road2.basevelocity = 2500;
         this.physics.arcade.enable(this.road2);
         this.road2.body.velocity.y = 2500;
 
