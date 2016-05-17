@@ -15,7 +15,10 @@ invertedRacer.Game = function (game) {
     this.leftKey1;
     this.rightKey1;
     this.gravKey1;
-    this.enemies;
+    var enemies;
+    var enemy;
+    var value;
+    var lane;
     this.cone;
     this.moveCoeff;
     // IDEA ! ! !  When collide with police, lose all lives.
@@ -96,37 +99,37 @@ invertedRacer.Game.prototype = {
 //    },
     
     buildEnemies: function () {
-        this.enemies = this.add.group();
-        this.physics.arcade.enable(this.enemies);
-        this.enemies.enableBody = true;
+        enemies = this.add.group();
+        this.physics.arcade.enable(enemies);
+        enemies.enableBody = true;
 
         for (var i = 0; i < 8; i++){
-            this.lane = this.rnd.integerInRange(0, 3);
-            this.enemy = this.enemies.create((this.lane * 122) + 133,  0 - this.rnd.integerInRange(0, 686), 'enemy1.1');
-            this.enemy.basevelocity = 0;
-            this.enemy.crashing = false;
+            lane = this.rnd.integerInRange(0, 3);
+            enemy = enemies.create((lane * 122) + 133,  0 - this.rnd.integerInRange(0, 686), 'enemy1.1');
+            enemy.basevelocity = 0;
+            .crashing = false;
             this.random = this.rnd.integerInRange(1, 3);
             this.random2 = this.rnd.integerInRange(100, 400);
-            this.enemy.AI = this.random;
-            this.enemy.whenDo = this.random2;
-            this.value = this.rnd.integerInRange(1, 3);
-            if (this.value == 1){
-                this.enemies.getAt(i).body.velocity.y = 250;
-                this.enemies.getAt(i).basevelocity = 250;
-                this.enemies.getAt(i).loadTexture('enemy1.1'); 
-                this.enemies.getAt(i).body.x = this.enemies.getAt(i).body.x - this.enemies.getAt(i).body.halfWidth;
-            } else if (this.value == 2){
-                this.enemies.getAt(i).body.velocity.y = 150;
-                this.enemies.getAt(i).basevelocity = 150;
-                this.enemies.getAt(i).loadTexture('enemy2.1');
-                this.enemies.getAt(i).body.x = this.enemies.getAt(i).body.x - this.enemies.getAt(i).body.halfWidth;
-            } else if (this.value == 3){
-                this.enemies.getAt(i).body.velocity.y = 200;
-                this.enemies.getAt(i).basevelocity = 200;
-                this.enemies.getAt(i).loadTexture('enemy3.1');
-                this.enemies.getAt(i).body.x = this.enemies.getAt(i).body.x - this.enemies.getAt(i).body.halfWidth;
+            enemy.AI = this.random;
+            enemy.whenDo = this.random2;
+            value = this.rnd.integerInRange(1, 3);
+            if (value == 1){
+                enemies.getAt(i).body.velocity.y = 250;
+                enemies.getAt(i).basevelocity = 250;
+                .getAt(i).loadTexture('enemy1.1'); 
+                .getAt(i).body.x = enemies.getAt(i).body.x - enemies.getAt(i).body.halfWidth;
+            } else if (value == 2){
+                enemies.getAt(i).body.velocity.y = 150;
+                enemies.getAt(i).basevelocity = 150;
+                enemies.getAt(i).loadTexture('enemy2.1');
+                enemies.getAt(i).body.x = enemies.getAt(i).body.x - enemies.getAt(i).body.halfWidth;
+            } else if (value == 3){
+                enemies.getAt(i).body.velocity.y = 200;
+                enemies.getAt(i).basevelocity = 200;
+                enemies.getAt(i).loadTexture('enemy3.1');
+                enemies.getAt(i).body.x = enemies.getAt(i).body.x - enemies.getAt(i).body.halfWidth;
             }
-            this.physics.arcade.enable(this.enemy);
+            this.physics.arcade.enable(enemy);
         }
                 
         this.cones = this.add.group();
@@ -226,8 +229,8 @@ invertedRacer.Game.prototype = {
                 this.p1.spinning = false;
             }
         }
-        for (var i = 0; i < this.enemies.length; i++){
-            this.enemies.getAt(i).body.velocity.y = this.enemies.getAt(i).basevelocity * mod;
+        for (var i = 0; i < enemies.length; i++){
+            enemies.getAt(i).body.velocity.y = enemies.getAt(i).basevelocity * mod;
         }
         for (var i = 0; i < this.cones.length; i++){
             this.cones.getAt(i).body.velocity.y = this.cones.getAt(i).basevelocity * mod;
@@ -277,27 +280,27 @@ invertedRacer.Game.prototype = {
     },
     
     respawnEnemy: function () {
-        for (var i = 0; i < this.enemies.children.length; i++){
-            if(this.gameover === false && this.enemies.getAt(i).body.y > 960 || this.enemies.getAt(i).body.x > 686 || this.enemies.getAt(i).body.x < 0){
-                this.lane = this.rnd.integerInRange(0, 3);
-                this.enemies.getAt(i).reset((this.lane * 124) + 162, 0 - (this.rnd.integerInRange(0, 686)));
-                this.enemies.getAt(i).crashing = false;
-                this.value = this.rnd.integerInRange(1, 3);
-                if (this.value == 1){
-                    this.enemies.getAt(i).body.velocity.y = 250;
-                    this.enemies.getAt(i).basevelocity = 250;
-                    this.enemies.getAt(i).loadTexture('enemy1.1');
-                    this.enemies.getAt(i).body.x = this.enemies.getAt(i).body.x - this.enemies.getAt(i).body.halfWidth;
-                } else if (this.value == 2){
-                    this.enemies.getAt(i).body.velocity.y = 150;
-                    this.enemies.getAt(i).basevelocity = 150;
-                    this.enemies.getAt(i).loadTexture('enemy2.1');
-                    this.enemies.getAt(i).body.x = this.enemies.getAt(i).body.x - this.enemies.getAt(i).body.halfWidth;
-                } else if (this.value == 3){
-                    this.enemies.getAt(i).body.velocity.y = 200;
-                    this.enemies.getAt(i).basevelocity = 200;
-                    this.enemies.getAt(i).loadTexture('enemy3.1');
-                    this.enemies.getAt(i).body.x = this.enemies.getAt(i).body.x - this.enemies.getAt(i).body.halfWidth;
+        for (var i = 0; i < enemies.children.length; i++){
+            if(this.gameover === false && enemies.getAt(i).body.y > 960 || enemies.getAt(i).body.x > 686 || enemies.getAt(i).body.x < 0){
+                lane = this.rnd.integerInRange(0, 3);
+                enemies.getAt(i).reset((lane * 124) + 162, 0 - (this.rnd.integerInRange(0, 686)));
+                enemies.getAt(i).crashing = false;
+                value = this.rnd.integerInRange(1, 3);
+                if (value == 1){
+                    enemies.getAt(i).body.velocity.y = 250;
+                    enemies.getAt(i).basevelocity = 250;
+                    enemies.getAt(i).loadTexture('enemy1.1');
+                    enemies.getAt(i).body.x = enemies.getAt(i).body.x - enemies.getAt(i).body.halfWidth;
+                } else if (value == 2){
+                    enemies.getAt(i).body.velocity.y = 150;
+                    enemies.getAt(i).basevelocity = 150;
+                    enemies.getAt(i).loadTexture('enemy2.1');
+                    enemies.getAt(i).body.x = enemies.getAt(i).body.x - enemies.getAt(i).body.halfWidth;
+                } else if (value == 3){
+                    enemies.getAt(i).body.velocity.y = 200;
+                    enemies.getAt(i).basevelocity = 200;
+                    enemies.getAt(i).loadTexture('enemy3.1');
+                    enemies.getAt(i).body.x = enemies.getAt(i).body.x - enemies.getAt(i).body.halfWidth;
                 }
             }
         }
@@ -333,7 +336,7 @@ invertedRacer.Game.prototype = {
             this.p1.body.velocity.x = 0;
             this.p1.body.velocity.y = 0;
             this.p1.destroy();
-            this.enemies.destroy();
+            enemies.destroy();
             this.cones.destroy();
             this.gameover = true;
             
