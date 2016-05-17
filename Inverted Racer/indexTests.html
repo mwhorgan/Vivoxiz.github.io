@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device_width">
+    <title>Inverted Racer</title>
+	<script type="text/javascript" src="libs/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            background-color: #31892B;
+        }
+    </style>
+</head>
+<body>
+
+<div id='gameContainer'></div>
+<script type="text/javascript">
+
+        var game = new Phaser.Game(686, 960, Phaser.AUTO, 'gameContainer', { titlePage: titlePage, preload: preload, create: create, update: update });
+    
+        function preload () {
+            
+        game.load.bitmapFont('eightbitwonder', 'fonts/eightbitwonder.png', 'fonts/eightbitwonder.fnt');
+        game.load.image('titleScreen', 'assets/titlescreen.png');
+    
+        var titleBG;
+    
+            game.add.image(0, 0, 'titleScreen');
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</script>
+
+</body>
+</html>
