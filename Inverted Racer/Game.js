@@ -287,8 +287,8 @@ invertedRacer.Game.prototype = {
         // for (var i = 0; i < this.bushes.length; i++){
         //     this.bushes.getAt(i).body.velocity.y = this.bushes.getAt(i).basevelocity * mod;
         // }
-        this.road.body.velocity.y = this.road.basevelocity * mod;
-        this.road2.body.velocity.y = this.road.basevelocity * mod;
+        //this.road.body.velocity.y = this.road.basevelocity * mod;
+        //this.road2.body.velocity.y = this.road.basevelocity * mod;
     },
 
     carCollide: function(a, b){
