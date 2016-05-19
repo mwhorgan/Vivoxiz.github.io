@@ -183,7 +183,7 @@ invertedRacer.Game.prototype = {
 //            this.physics.arcade.enable(this.bBush);
 //        }
         
-        for (var i = 0; i < 2; i++) {
+        for (var i = 0; i < 5; i++) {
             this.bBush;
             this.laneBush = this.rnd.integerInRange(0, 5);
             this.spawnDelay = this.rnd.integerInRange(20, 3000);
@@ -277,16 +277,16 @@ invertedRacer.Game.prototype = {
                 this.hit = false;
                 this.p1.spinning = false;
             }
-        }
-        for (var i = 0; i < this.enemies.length; i++){
-            this.enemies.getAt(i).body.velocity.y = this.enemies.getAt(i).basevelocity * mod;
-        }
-        for (var i = 0; i < this.cones.length; i++){
-            this.cones.getAt(i).body.velocity.y = this.cones.getAt(i).basevelocity * mod;
-        }
-        for (var i = 0; i < this.bushes.length; i++){
-            this.bushes.getAt(i).body.velocity.y = this.bushes.getAt(i).basevelocity * mod;
-        }
+        // }
+        // for (var i = 0; i < this.enemies.length; i++){
+        //     this.enemies.getAt(i).body.velocity.y = this.enemies.getAt(i).basevelocity * mod;
+        // }
+        // for (var i = 0; i < this.cones.length; i++){
+        //     this.cones.getAt(i).body.velocity.y = this.cones.getAt(i).basevelocity * mod;
+        // }
+        // for (var i = 0; i < this.bushes.length; i++){
+        //     this.bushes.getAt(i).body.velocity.y = this.bushes.getAt(i).basevelocity * mod;
+        // }
         this.road.body.velocity.y = this.road.basevelocity * mod;
         this.road2.body.velocity.y = this.road.basevelocity * mod;
     },
