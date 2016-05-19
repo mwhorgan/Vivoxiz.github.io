@@ -7,6 +7,12 @@ invertedRacer.Boot.prototype = {
         this.load.image('titlescreen', 'assets/titlescreen.png');
         this.load.image('startGameText', 'assets/startGameText.png');
         this.load.image('candyVan', 'assets/Candy_van.png');
+        
+        this.load.image('wKey', 'assets/w key.png');
+        this.load.image('sKey', 'assets/s key.png');
+        this.load.image('dKey', 'assets/d key.png');
+        this.load.image('aKey', 'assets/a key.png');
+
     },
     
     create: function() {

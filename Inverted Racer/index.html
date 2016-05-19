@@ -5,12 +5,13 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device_width">
     <title>Inverted Racer</title>
-<script type="text/javascript" src="libs/phaser.min.js"></script>
+	<script type="text/javascript" src="libs/phaser.min.js"></script>
     <script src='Boot.js'></script>
     <script src='Preloader.js'></script>
     <script src='StartMenu.js'></script>
     <script src='Game.js'></script>
-    	<style type="text/css">
+    <script src='Instructions.js'></script>
+    <style type="text/css">
         body {
             margin: 0;
             background-color: #31892B;
@@ -27,6 +28,7 @@
         game.state.add('Preloader', invertedRacer.Preloader);
         game.state.add('StartMenu', invertedRacer.StartMenu);
         game.state.add('Game', invertedRacer.Game);
+        game.state.add('Instructions', invertedRacer.Instructions);
         game.state.start('Boot');
     }
 
