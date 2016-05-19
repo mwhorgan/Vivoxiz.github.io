@@ -277,18 +277,18 @@ invertedRacer.Game.prototype = {
                 this.hit = false;
                 this.p1.spinning = false;
             }
-        // }
-        // for (var i = 0; i < this.enemies.length; i++){
-        //     this.enemies.getAt(i).body.velocity.y = this.enemies.getAt(i).basevelocity * mod;
-        // }
-        // for (var i = 0; i < this.cones.length; i++){
-        //     this.cones.getAt(i).body.velocity.y = this.cones.getAt(i).basevelocity * mod;
-        // }
-        // for (var i = 0; i < this.bushes.length; i++){
-        //     this.bushes.getAt(i).body.velocity.y = this.bushes.getAt(i).basevelocity * mod;
-        // }
-        //this.road.body.velocity.y = this.road.basevelocity * mod;
-        //this.road2.body.velocity.y = this.road.basevelocity * mod;
+        }
+//        for (var i = 0; i < this.enemies.length; i++){
+//            this.enemies.getAt(i).body.velocity.y = this.enemies.getAt(i).basevelocity * mod;
+//        }
+//        for (var i = 0; i < this.cones.length; i++){
+//            this.cones.getAt(i).body.velocity.y = this.cones.getAt(i).basevelocity * mod;
+//        }
+//        for (var i = 0; i < this.bushes.length; i++){
+//            this.bushes.getAt(i).body.velocity.y = this.bushes.getAt(i).basevelocity * mod;
+//        }
+//        this.road.body.velocity.y = this.road.basevelocity * mod;
+//        this.road2.body.velocity.y = this.road.basevelocity * mod;
     },
 
     carCollide: function(a, b){
@@ -502,3 +502,11 @@ invertedRacer.Game.prototype = {
 
     }
 };
+
+
+
+
+
+
+
+
