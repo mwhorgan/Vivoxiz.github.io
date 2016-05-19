@@ -391,6 +391,7 @@ invertedRacer.Game.prototype = {
     }
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
@@ -399,5 +400,7 @@ invertedRacer.Game.prototype = {
 
 
 
+=======
+>>>>>>> parent of 23c1c9f... Added bushes
 =======
 >>>>>>> parent of 23c1c9f... Added bushes
