@@ -3,7 +3,6 @@ invertedRacer.StartMenu = function (game) {
     this.startText;
     this.startGame;
     this.vanEasterEgg;
-    this.instruct;
 };
 
 invertedRacer.StartMenu.prototype = {
