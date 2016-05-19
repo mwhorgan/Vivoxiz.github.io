@@ -16,6 +16,8 @@ invertedRacer.Game = function (game) {
     this.rightKey1;
     this.gravKey1;
     this.enemies;
+//    this.bushes;
+//    this.bush;
     this.cone;
     this.moveCoeff;
     // IDEA ! ! !  When collide with police, lose all lives.
@@ -158,6 +160,54 @@ invertedRacer.Game.prototype = {
             }
             this.physics.arcade.enable(this.Tcone);
         }
+        
+        this.bushes = this.add.group();
+        this.physics.arcade.enable(this.bushes);
+        this.bushes.enableBody = true;
+        
+//        for (var i = 0; i < 70; i++){
+//            this.laneBush = this.rnd.integerInRange(0, 5);
+//            this.bBush = this.bushes.create((this.laneBush * 116) + 15,  (0 - 20) - this.rnd.integerInRange(0, 686), 'bush');
+//            this.bBush.crashing = false;
+//            this.bBush.basevelocity - 0;
+//            this.randomB = this.rnd.integerInRange(1, 1);
+//            this.random2B = this.rnd.integerInRange(100, 400);
+//            this.bBush.AI = this.randomB;
+//            this.bBush.whenDo = this.random2B;
+//            this.valueB = this.rnd.integerInRange(1, 1);
+//            if (this.valueB == 1 && this.laneBush == 0 || this.laneBush == 5){
+//                this.bushes.getAt(i).body.velocity.y = 280;
+//                this.bushes.getAt(i).basevelocity = 280;
+//                this.bushes.getAt(i).body.x = this.bushes.getAt(i).body.x - this.bushes.getAt(i).body.halfWidth;
+//            } else {}
+//            this.physics.arcade.enable(this.bBush);
+//        }
+        
+        for (var i = 0; i < 2; i++) {
+            this.bBush;
+            this.laneBush = this.rnd.integerInRange(0, 5);
+            this.spawnDelay = this.rnd.integerInRange(20, 3000);
+            if (this.laneBush == 0) {
+                this.bBush = this.bushes.create(15, (0 - 20) - this.rnd.integerInRange(0, 686), 'bush');
+            } else if (this.laneBush == 1) {
+                this.bBush = this.bushes.create(595, (0 - 20) - this.rnd.integerInRange(0, 686), 'bush');
+            } else {
+                this.bBush = this.bushes.create(1200, (0 - 20) - this.rnd.integerInRange(0, 686), 'bush');
+            }
+            this.bBush.crashing = false;
+            this.bBush.basevelocity - 0;
+            this.randomB = this.rnd.integerInRange(1, 1);
+            this.random2B = this.rnd.integerInRange(100, 400);
+            this.bBush.AI = this.randomB;
+            this.bBush.whenDo = this.random2B;
+            this.valueB = this.rnd.integerInRange(1, 1);
+            if (this.valueB == 1) {
+                this.bushes.getAt(i).body.velocity.y = 280;
+                this.bushes.getAt(i).basevelocity = 280;
+                this.bushes.getAt(i).body.x = this.bushes.getAt(i).body.x - this.bushes.getAt(i).body.halfWidth;
+            } else {}
+            this.physics.arcade.enable(this.bBush);
+        }
     },
 
     roadMovement: function () {
@@ -234,6 +284,9 @@ invertedRacer.Game.prototype = {
         for (var i = 0; i < this.cones.length; i++){
             this.cones.getAt(i).body.velocity.y = this.cones.getAt(i).basevelocity * mod;
         }
+        for (var i = 0; i < this.bushes.length; i++){
+            this.bushes.getAt(i).body.velocity.y = this.bushes.getAt(i).basevelocity * mod;
+        }
         this.road.body.velocity.y = this.road.basevelocity * mod;
         this.road2.body.velocity.y = this.road.basevelocity * mod;
     },
@@ -258,6 +311,37 @@ invertedRacer.Game.prototype = {
                 } else {
                     b.body.velocity.y = -50;
                 }
+                this.ratio = Math.atan(this.diffY / this.diffX);
+                if (this.diffX > 0){
+                    this.p1.body.velocity.x = 50 * Math.cos(this.ratio);
+                    this.moveCoeff = -50 * Math.sin(this.ratio);
+                } else {
+                    this.p1.body.velocity.x = -50 * Math.cos(this.ratio);
+                    this.moveCoeff = 50 * Math.sin(this.ratio);
+                }
+                if (!this.p1.spinning){
+                    this.p1.angle = 10;
+                }
+                this.hit = true;
+                this.lives -= 1;
+                this.life.text = "Lives: " + this.lives;
+                
+                this.checkLivesLeft();
+            }
+        }
+    },
+    
+    bushCollide: function(a, b){
+                        
+        if (!b.crashing){
+            if (this.gameover === false) {
+                this.test -= 50;
+                this.testdouble -= 50;
+                this.testText.text = "Score: " + this.test;
+                b.crashing = true;
+                this.diffX = b.body.x + b.body.halfWidth - a.body.x - a.body.halfWidth;
+                this.diffY = b.body.y + b.body.halfHeight - a.body.y - a.body.halfHeight;
+                b.destroy();
                 this.ratio = Math.atan(this.diffY / this.diffX);
                 if (this.diffX > 0){
                     this.p1.body.velocity.x = 50 * Math.cos(this.ratio);
@@ -329,6 +413,31 @@ invertedRacer.Game.prototype = {
             }
         }
     },
+    
+    respawnBush: function () {
+                
+        for (var i = 0; i < this.bushes.children.length; i++){
+            if(this.gameover === false && this.bushes.getAt(i).body.y > 960 || this.bushes.getAt(i).body.x > 686 || this.bushes.getAt(i).body.x < 0) {
+                this.laneBush = this.rnd.integerInRange(0, 5);
+                if (this.laneBush == 0) {
+                    this.bushes.getAt(i).reset(50,  (0 - 20) - this.rnd.integerInRange(0, 686));
+                } else if (this.laneBush == 1) {
+                    this.bushes.getAt(i).reset(640,  (0 - 20) - this.rnd.integerInRange(0, 686));
+                } else {
+                    this.bushes.getAt(i).reset(1200,  (0 - 20) - this.rnd.integerInRange(0, 686));
+                }
+                this.bushes.getAt(i).crashing = false;
+                this.valueB = this.rnd.integerInRange(1, 1);
+                if (this.valueB == 1){
+                    this.bushes.getAt(i).body.velocity.y = 280;
+                    this.bushes.getAt(i).basevelocity = 280;
+                    this.bushes.getAt(i).body.x = this.bushes.getAt(i).body.x - this.bushes.getAt(i).body.halfWidth;
+                } else {}
+            }
+        }
+    },
+    
+//    && this.laneBush == 0 || this.laneBush == 5
         
     checkLivesLeft: function () {    
         if (this.lives <= 0) {
@@ -337,6 +446,7 @@ invertedRacer.Game.prototype = {
             this.p1.destroy();
             this.enemies.destroy();
             this.cones.destroy();
+            this.bushes.destroy();
             this.gameover = true;
             
             var delay = 500;
@@ -381,26 +491,14 @@ invertedRacer.Game.prototype = {
     update: function() {
         this.physics.arcade.overlap(this.p1, this.enemies, this.carCollide, null, this);
         this.physics.arcade.overlap(this.p1, this.cones, this.carCollide, null, this);
+        this.physics.arcade.overlap(this.p1, this.bushes, this.bushCollide, null, this);
         this.playerBorders();
         this.playerMovement();
         this.respawnEnemy();
         this.respawnCone();
+        this.respawnBush();
         this.roadMovement();
         
 
     }
 };
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-=======
->>>>>>> parent of 23c1c9f... Added bushes
-=======
->>>>>>> parent of 23c1c9f... Added bushes
