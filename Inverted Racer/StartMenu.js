@@ -3,6 +3,7 @@ invertedRacer.StartMenu = function (game) {
     this.startText;
     this.startGame;
     this.vanEasterEgg;
+    this.instruct;
 };
 
 invertedRacer.StartMenu.prototype = {
@@ -17,6 +18,11 @@ invertedRacer.StartMenu.prototype = {
         this.startText = this.add.image(110, this.world.centerY, 'startGameText');
         this.startText.inputEnabled = true;
         this.startText.events.onInputDown.addOnce(this.startGame, this);
+        
+        this.instruct = this.add.bitmapText(150, this.world.centerY + 100, 'VCR_OSD', 'INSTRUCTIONS', 54);
+        this.instruct.tint = 0xF9891C;
+        this.instruct.inputEnabled = true;
+        this.instruct.events.onInputDown.addOnce(this.howToPlay, this);
     },
     
     startGame: function (pointer) {
@@ -28,5 +34,14 @@ invertedRacer.StartMenu.prototype = {
     playerVan: function (pointer) {
         this.vanEasterEgg.destroy();
         van = true;
+    },
+    
+    howToPlay: function (pointer) {
+        this.startText.destroy();
+        this.instruct.destroy();
+        this.startBG.destroy();
+        this.vanEasterEgg.destroy();
+        this.startText.destroy();
+        this.state.start('Instructions');
     },
 };
