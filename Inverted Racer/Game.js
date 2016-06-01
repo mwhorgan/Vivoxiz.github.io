@@ -492,6 +492,7 @@ invertedRacer.Game.prototype = {
         this.physics.arcade.overlap(this.p1, this.enemies, this.carCollide, null, this);
         this.physics.arcade.overlap(this.p1, this.cones, this.carCollide, null, this);
         this.physics.arcade.overlap(this.p1, this.bushes, this.bushCollide, null, this);
+        this.physics.arcade.collide(this.enemies);
         this.playerBorders();
         this.playerMovement();
         this.respawnEnemy();
