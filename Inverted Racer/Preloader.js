@@ -27,6 +27,9 @@ invertedRacer.Preloader.prototype = {
         this.load.image('bush', 'assets/bush.png');
 
         this.load.image('boom1', 'assets/explosion1.fw.png');
+        
+        this.load.audio('explosion_audio', 'audio/explosion.mp3');
+        this.load.audio('game_audio', 'audio/bgm.mp3');
     },
     
     create:function () {},
