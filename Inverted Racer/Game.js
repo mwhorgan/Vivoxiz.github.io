@@ -24,6 +24,8 @@ invertedRacer.Game = function (game) {
     this.test;
     this.testText;
     this.testdouble;
+    this.music;
+    this.boom;
 };
 
 invertedRacer.Game.prototype = {
@@ -41,6 +43,9 @@ invertedRacer.Game.prototype = {
         this.rightKey1 = this.input.keyboard.addKey(Phaser.Keyboard.D);
         this.gravKey1 = this.input.keyboard.addKey(Phaser.Keyboard.E);
 
+        this.music = this.add.audio('game_audio');
+        this.music.play('', 0, 0.3, true);
+        this.boom = this.add.audio('explosion_audio');
         this.physics.startSystem(Phaser.Physics.ARCADE);
 
         this.buildWorld();
@@ -299,6 +304,7 @@ invertedRacer.Game.prototype = {
                 this.testdouble -= 50;
                 this.testText.text = "Score: " + this.test;
                 b.crashing = true;
+                this.boom.play();
                 this.diffX = b.body.x + b.body.halfWidth - a.body.x - a.body.halfWidth;
                 this.diffY = b.body.y + b.body.halfHeight - a.body.y - a.body.halfHeight;
                 if (this.diffX > 0){
@@ -448,6 +454,7 @@ invertedRacer.Game.prototype = {
             this.cones.destroy();
             this.bushes.destroy();
             this.gameover = true;
+            this.music.stop();
             
             var delay = 500;
             this.explosion1 = this.add.sprite(this.p1.body.x, this.p1.body.y, 'boom1');
