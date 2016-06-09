@@ -41,9 +41,9 @@ invertedRacer.Instructions.prototype = {
         
         this.infoPrep();
 
-        this.startText = this.add.image(110, this.world.centerY + 200, 'startGameText');
-        this.startText.inputEnabled = true;
-        this.startText.events.onInputDown.addOnce(this.startGame, this);
+        this.mainText = this.add.bitmapText(220, 880, 'VCR_OSD', 'Main Menu', 54);
+        this.mainText.inputEnabled = true;
+        this.mainText.events.onInputDown.addOnce(this.infoMain, this);
     },
     
     infoSec: function () {
@@ -67,9 +67,9 @@ invertedRacer.Instructions.prototype = {
         }
     },
      
-    startGame: function (pointer) {
-        this.state.start('Game');
-        this.startText.destroy();
+    infoMain: function (pointer) {
+        this.state.start('StartMenu');
+        this.mainText.destroy();
     },
     
     update: function() {
