@@ -41,6 +41,9 @@ invertedRacer.Instructions.prototype = {
         
         this.infoPrep();
 
+        this.startText = this.add.image(110, this.world.centerY + 200, 'startGameText');
+        this.startText.inputEnabled = true;
+        this.startText.events.onInputDown.addOnce(this.startGame, this);
     },
     
     infoSec: function () {
@@ -63,7 +66,12 @@ invertedRacer.Instructions.prototype = {
             this.road.body.y = this.road2.body.y + 960;
         }
     },
-      
+     
+    startGame: function (pointer) {
+        this.state.start('Game');
+        this.startText.destroy();
+    },
+    
     update: function() {
         this.infoRoad();
         if (this.secondsElapsed == 1 || this.secondsElapsed == 2) {
