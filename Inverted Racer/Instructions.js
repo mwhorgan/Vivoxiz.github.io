@@ -41,7 +41,7 @@ invertedRacer.Instructions.prototype = {
         
         this.infoPrep();
 
-        this.mainText = this.add.bitmapText(180, 880, 'VCR_OSD', 'Main Menu', 54);
+        this.mainText = this.add.bitmapText(200, 880, 'VCR_OSD', 'Main Menu', 54);
         this.mainText.tint = 0xFFA22F;
         this.mainText.inputEnabled = true;
         this.mainText.events.onInputDown.addOnce(this.infoMain, this);
