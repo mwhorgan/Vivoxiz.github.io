@@ -36,6 +36,7 @@ invertedRacer.Game.prototype = {
         this.lives = 3;
         this.test = 0;
         this.testdouble = 0;
+        this.van = false;
         
         this.upKey1 = this.input.keyboard.addKey(Phaser.Keyboard.W);
         this.downKey1 = this.input.keyboard.addKey(Phaser.Keyboard.S);
